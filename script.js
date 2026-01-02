@@ -7,9 +7,22 @@ function createGrid(numOfGrids) {
         newDiv.style.height = `${size}px`;
         newDiv.style.width = `${size}px`;
         newDiv.classList.add("square");
+
+        newDiv.dataset.rgb = randomRgb();
+        newDiv.dataset.opacity = 0;
         newDiv.addEventListener("mouseenter", () => {
-            newDiv.style.backgroundColor = randomRgb();
-        }, {once: true})
+            // newDiv.style.backgroundColor = randomRgb();
+            let opacity = Number(newDiv.dataset.opacity);
+            if (newDiv.dataset.opacity === "0") {
+                newDiv.style.backgroundColor = newDiv.dataset.rgb;
+            }
+
+            if (newDiv.style.opacity < 1) {
+                opacity += 0.1;
+                newDiv.dataset.opacity = opacity;
+                newDiv.style.opacity = opacity;
+            }
+        })
         container.appendChild(newDiv);
     }
 }
