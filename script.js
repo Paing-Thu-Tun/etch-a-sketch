@@ -8,8 +8,8 @@ function createGrid(numOfGrids) {
         newDiv.style.width = `${size}px`;
         newDiv.classList.add("square");
         newDiv.addEventListener("mouseenter", () => {
-            newDiv.style.backgroundColor = "black";
-        })
+            newDiv.style.backgroundColor = randomRgb();
+        }, {once: true})
         container.appendChild(newDiv);
     }
 }
@@ -30,3 +30,15 @@ gridNumBtn.addEventListener("click", () => {
     deleteGrid();
     createGrid(numOfGrids);
 })
+
+// Generate random number between 0 to 255 (inclusive)
+function randomNum() {
+    return Math.floor(Math.random() * 255 + 1);
+}
+
+function randomRgb() {
+    const randomR = randomNum();
+    const randomB = randomNum();
+    const randomC = randomNum();
+    return `rgb(${randomR}, ${randomB}, ${randomC})`;
+}
